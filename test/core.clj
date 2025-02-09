@@ -1,4 +1,4 @@
-(ns clojure-hospital.test.core)
+(ns test.core)
 
 (defn -main []
   (println "Hello, tests!"))
