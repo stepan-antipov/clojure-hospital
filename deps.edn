@@ -1,17 +1,25 @@
-{:path ["src"]
- :deps {ring/ring-core {:mvn/version "1.13.0"}
-        ring/ring-jetty-adapter {:mvn/version "1.13.0"}
-        ring/ring-devel {:mvn/version "1.9.6"}
+{:deps {org.clojure/clojure {:mvn/version "1.10.1"}
+        ring/ring-core {:mvn/version "1.10.0"}
+        ring/ring-jetty-adapter {:mvn/version "1.10.0"}
+        ring/ring-devel {:mvn/version "1.10.0"}
         org.clojure/java.jdbc {:mvn/version "0.7.12"}
         org.postgresql/postgresql {:mvn/version "42.6.0"}
-        metosin/reitit-ring {:mvn/version "0.5.5"}}
+        metosin/reitit-ring {:mvn/version "0.5.5"}
+        ring/ring-json {:mvn/version "0.5.1"}}
  :aliases {:server {:main-opts ["-m" "clojure-hospital.core"]}
            :test-server {:main-opts ["-m" "clojure-hospital.test.core"]}
-           :build {:deps {:io.github.clojure/tools.build {:git/tag "v0.9.4"
-                                                          :git/sha "76b78fe"}}
-                   :ns-default build}}}
+           :build {:deps {io.github.clojure/tools.build {:git/tag "v0.9.4"
+                                                         :git/sha "76b78fe"}}
+                   :ns-default build}
+           :repl/clojure
+           {:extra-deps
+            {nrepl/nrepl {:mvn/version "1.0.0"}
+             cider/cider-nrepl {:mvn/version "0.30.0"}}
+            :main-opts ["-m" "nrepl.cmdline"
+                        "--middleware" "[cider.nrepl/cider-middleware]"
+                        "--interactive"]}}}
 
 ;; clj -M -m clojure-hospital.main
 
-
+;; clj -T:repl/conjure
 

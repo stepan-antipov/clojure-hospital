@@ -1,5 +1,6 @@
 (ns db.init-tables
   (:require [db.credentials :refer [db]]
+            ;; java api for database
             [clojure.java.jdbc :as jdbc]))
 
 
@@ -9,9 +10,7 @@
       gender_type VARCHAR(16) PRIMARY KEY, 
       created_at timestamptz DEFAULT NOW() NOT NULL)"))
 
-#_(defn add-genders []
-  (jdbc/insert-multi! db :gender [{:gender_type "Male"}
-                                  {:gender_type "Female"}]))
+
 
 (defn add-genders []
   (jdbc/execute! db
@@ -23,7 +22,7 @@
 (defn create-table-patient []
   (jdbc/execute! db
     "CREATE TABLE IF NOT EXISTS patient (
-      mid VARCHAR(16) PRIMARY KEY, 
+      mid VARCHAR(12) PRIMARY KEY, 
       first_name VARCHAR(128) NOT NULL,
       last_name VARCHAR(128) NOT NULL,
       gender_type VARCHAR(16) NOT NULL REFERENCES gender(gender_type),
